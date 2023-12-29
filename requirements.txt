@@ -1,0 +1,5 @@
+pynput
+smtplib
+datetime
+threading
+email
