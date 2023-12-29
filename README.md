@@ -1,5 +1,5 @@
 # PyKeylogger
 
-A keylogger based on python
+A keylogger based on python.
 
 ## Installation
